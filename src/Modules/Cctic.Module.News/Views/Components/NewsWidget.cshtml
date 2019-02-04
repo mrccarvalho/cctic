@@ -1,0 +1,18 @@
+﻿@model Cctic.Module.News.ViewModels.NewsWidgetComponentVm
+<!-- 3 Cols -->
+<section>
+    <div class="mt-4">
+        <div class="row">
+
+            @foreach (var newsitem in Model.News_Items)
+            {
+
+                @await Html.PartialAsync("/Modules/Cctic.Module.News/Views/Shared/_NewsThumbnail.cshtml", newsitem)
+
+            }
+
+
+        </div>
+      
+        </div>
+</section>

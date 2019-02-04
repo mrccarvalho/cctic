@@ -1,0 +1,77 @@
+@model IndexViewModel
+@{
+    ViewData["Title"] = "Manage your account";
+}
+<section class="page-header">
+    <div class="container">
+
+
+
+        <h1>@ViewData["Title"]</h1>
+
+        <!-- breadcrumbs -->
+        <ol class="breadcrumb">
+            <li><a href="~/">Home</a></li>
+            <li><span class="active">@ViewData["Title"]</span></li>
+        </ol><!-- /breadcrumbs -->
+
+    </div>
+</section>
+<!-- /PAGE HEADER -->
+@if (ViewData["StatusMessage"] != null)
+{
+    <p class="text-success">@ViewData["StatusMessage"]</p>
+}
+<div class="container">
+    <div class="mt-40">
+        <div class="row">
+            <div class="col-md-3">
+                @Html.Partial("_AccountMenu")
+            </div>
+            <div class="col-md-9">
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">@Localizer["Account Information"]</div>
+                            <div class="panel-body">
+                                @Model.FullName <br />
+                                @Model.Email
+                                <p class="text-right">
+                                    <a href="~/user/info">@Localizer["Edit"]</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">@Localizer["Security"]</div>
+                            <div class="panel-body">
+                                <dl class="dl-horizontal">
+                                    <dt>@Localizer["Password"]:</dt>
+                                    <dd>
+                                        @if (Model.HasPassword)
+                                        {
+                                            <a asp-controller="Manage" asp-action="ChangePassword" class="btn-bracketed">@Localizer["Change"]</a>
+                                        }
+                                        else
+                                        {
+                                            <a asp-controller="Manage" asp-action="SetPassword" class="btn-bracketed">@Localizer["Create"]</a>
+                                        }
+                                    </dd>
+                                    <dt>@Localizer["External Logins"]:</dt>
+                                    <dd>
+                                        @Model.Logins.Count <a asp-controller="Manage" asp-action="ManageLogins" class="btn-bracketed">@Localizer["Manage"]</a>
+                                    </dd>
+                                </dl>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

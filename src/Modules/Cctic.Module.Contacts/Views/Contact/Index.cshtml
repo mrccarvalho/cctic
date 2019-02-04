@@ -1,0 +1,128 @@
+﻿@model Cctic.Module.Contacts.ViewModels.ContactVm
+@inject IConfiguration Config
+@{
+    ViewData["Title"] = "Contactos";
+}
+
+
+<section class="page-header">
+    <div class="container">
+
+
+
+        <h1>@ViewData["Title"]</h1>
+
+        <!-- breadcrumbs -->
+        <ol class="breadcrumb">
+            <li><a href="~/">Home</a></li>
+            <li><span class="active">@ViewData["Title"]</span></li>
+        </ol><!-- /breadcrumbs -->
+
+    </div>
+</section>
+<!-- /PAGE HEADER -->
+<!-- -->
+<div class="container">
+    <section class="mt-4">
+        <div class="h-300 mb-60" id="googleMap">
+        </div>
+        <div class="row">
+
+            <!-- FORM -->
+            <div class="col-md-9 col-sm-9">
+
+
+
+                <form action="/contact" method="POST">
+                    <fieldset>
+
+
+                        <div class="row">
+                            <div class="col-md-4">
+
+                                <input asp-for="FullName" class="form-control" type="text" placeholder="@Localizer["Full name"]" />
+                                <span asp-validation-for="FullName" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-4">
+                                <input asp-for="EmailAddress" class="form-control" type="email" placeholder="@Localizer["Email"]" />
+                                <span asp-validation-for="EmailAddress" class="text-danger"></span>
+
+                            </div>
+                            <div class="col-md-4">
+                                <input asp-for="PhoneNumber" class="form-control" type="text" placeholder="@Localizer["Phone number"]" />
+                                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-8">
+                                <input asp-for="Address" type="text" class="form-control" placeholder="@Localizer["Address"]">
+                                <span asp-validation-for="Address" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-4">
+
+                                <select class="form-control input-contact" asp-for="ContactAreaId">
+                                    @foreach (var item in Model.ContactAreas)
+                                    {
+                                        <option value="@item.Id"> @item.Name </option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <textarea class="form-control input-contact" rows="5" asp-for="Content"></textarea>
+                            </div>
+                        </div>
+
+
+                    </fieldset>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <button type="submit" class="btn btn-primary"><i class="fa fa-check"></i> SUBMETER</button>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+            <!-- /FORM -->
+            <!-- INFO -->
+            <div class="col-md-3 col-sm-3">
+
+                <h2>Visite-nos</h2>
+
+                
+
+                <hr />
+
+                <p>
+                    <span class="block"><strong><i class="fa fa-map-marker"></i> Endereço:</strong> Escola Superior de educação de Bragança, Campus de Santa Apolónia - 5300-253, Bragança</span>
+                    <span class="block"><strong><i class="fa fa-phone"></i> Telefone:</strong> <a>(273) 330-654</a></span>
+                    <span class="block"><strong><i class="fa fa-envelope"></i> Email:</strong> <a href="mailto:cctic@ipb.pt">cctic@ipb.pt</a></span>
+                </p>
+
+                <hr />
+
+                <h4 class="font300">Horário</h4>
+                <p>
+                    <span class="block"><strong>Segunda - Sexta:</strong> 09:00 - 17:30</span>
+                    
+                </p>
+
+            </div>
+            <!-- /INFO -->
+
+        </div>
+
+
+    </section>
+    <!-- / -->
+</div>
+
+
+@section scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+    <script simpl-append-version="true" src="~/modules/contacts/init-google-map.js"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=@Config["GoogleAppKey"]&callback=initMap"> </script>
+}

@@ -1,0 +1,30 @@
+@model Cctic.Module.News.ViewModels.NewsItemThumbnail
+
+
+
+
+
+
+<div class="col-md-4 col-sm-4">
+    <div class="news-clean">
+
+        <h6 class="bold"> @Model.Name </h6>
+        <ul class="text-center fs-12 list-inline list-separator">
+            <li>
+                <i class="fa fa-calendar"></i>
+                Publicado em: @Model.PublishedOn.ToString("dd-MM-yyyy")
+            </li>
+
+        </ul>
+        <hr>
+        <div class="text-left">
+
+            <p>@Html.Raw(Model.ShortContent) ...</p>
+            <hr>
+
+        </div>
+        <a href="~/@Model.SeoTitle" class="btn btn-3d btn-teal">Ler Mais</a>
+    </div>
+
+
+</div>

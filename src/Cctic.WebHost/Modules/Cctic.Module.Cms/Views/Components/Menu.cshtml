@@ -1,0 +1,20 @@
+@model IEnumerable<Cctic.Module.Cms.ViewModels.MenuItemVm>
+
+<ul class="list-unstyled">
+        @foreach (var item in Model)
+        {
+            <li>
+           
+            <a class="block"  href="@item.Link"><i class="fa fa-angle-right"></i>@item.Name</a>
+            @if (item.ChildItems.Any())
+            {
+                <ul>
+                    @foreach (var childItem in item.ChildItems)
+                    {
+                        <li><a class="block"   href="@childItem.Link">@childItem.Name</a></li>
+                    }
+                </ul>
+            }
+        </li>
+    }
+</ul>

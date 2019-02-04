@@ -1,0 +1,44 @@
+@model Cctic.Module.News.ViewModels.NewsWidgetComponentVm
+<!-- 3 Cols -->
+
+
+
+<section>
+    	<header class="text-left margin-bottom-20">
+						
+						<hr />
+
+                        
+
+					</header>
+
+      	 	<header class="text-left margin-bottom-20">
+						
+	
+                        
+ <span class="text-left"> <b>	Notícias </b>
+</a></span>
+                        
+ <span class="float-right"> 	<a href="news" class="btn btn-xs btn-primary">Ver todas
+</a></span>
+					</header>			
+
+
+    <div class="mt-4">
+        
+
+						
+        <div class="row">
+
+            @foreach (var newsitem in Model.News_Items)
+            {
+
+                @await Html.PartialAsync("/Modules/Cctic.Module.News/Views/Shared/_NewsThumbnail.cshtml", newsitem)
+
+            }
+
+
+        </div>
+      
+        </div>
+</section>

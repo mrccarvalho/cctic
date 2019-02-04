@@ -1,0 +1,35 @@
+﻿@using Cctic.Module.Core.Models
+
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
+
+
+@if (SignInManager.IsSignedIn(User))
+{
+    
+    <li>
+        <a class="dropdown-toggle no-text-underline" data-toggle="dropdown" href="#"><i class="fa fa-user hidden-xs-down"></i> MINHA CONTA</a>
+        <ul class="dropdown-menu float-right">
+            <li class="divider"></li>
+            <li><a tabindex="-1" href="#"><i class="fa fa-cog"></i> DEFINIÇÕES</a></li>
+            <li class="divider"></li>  
+        </ul>
+    </li>
+    <li class="text-welcome hidden-xs-down">Bem vindo <strong></strong></li>
+    <li class="text-welcome hidden-xs-down">
+        <a asp-controller="Manage" asp-action="Index" title="@Localizer["Manage"]">@Localizer[UserManager.GetUserName(User)]</a>
+    </li>
+
+  
+    <li>
+        <form style="margin-bottom:0;" asp-controller="Account" asp-action="LogOff" method="post" id="logoutForm">
+            <i class="glyphicon glyphicon-off"></i>  <button  type="submit">@Localizer["LOGOUT"]</button>
+        </form>
+    </li>
+}
+else
+{
+
+    <li class="hidden-xs-down"><a asp-controller="Account"  asp-action="Login">@Localizer["Log in"]</a></li>
+    
+}

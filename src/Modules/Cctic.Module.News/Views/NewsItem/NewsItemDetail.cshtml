@@ -1,0 +1,62 @@
+﻿@model Cctic.Module.News.ViewModels.NewsItemVm
+@{
+    ViewData["Title"] = Model.Abrev;
+}
+
+
+<section class="page-header">
+    <div class="container">
+        <h1>@Model.Abrev</h1>
+        <!-- breadcrumbs -->
+        <ol class="breadcrumb">
+            <li><a href="~/">Home</a></li>
+            <li><span class="active">@Model.Abrev</span></li>
+        </ol><!-- /breadcrumbs -->
+
+    </div>
+</section>
+<!-- /PAGE HEADER -->
+<!-- INÍCIO TÍTULO -->
+<section class="mt-40">
+    <div class="row">
+        <div class="container">
+            <div class="heading-title heading-border heading-color mt-0">
+                <h2 class="fs-18 fw-400">Notícia</h2>
+                <p class="fs-13">Publicado em: @Model.PublishedOn.ToString("dd-MM-yyyy") </p>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- /FIM TÍTULO -->
+
+<section>
+    <div class="container">
+
+
+
+        <!-- NOTICIA -->
+        <article class="row">
+            <div class="col-md-3">
+                <!-- IMAGEM -->
+                <div>
+
+                    <div>
+                        <img class="img-fluid" src="@Model.ThumbnailImageUrl" alt="">
+                    </div>
+                    <img />
+                    <!-- /IMAGEM -->
+                </div>
+            </div>
+            <div class="col-md-9">
+                <h3>@Model.Name</h3>
+                <p>@Html.Raw(Model.FullContent)</p>
+
+
+            </div>
+        </article>
+        <!-- /NOTICIA -->
+
+    </div>
+</section>
+<!-- / -->
