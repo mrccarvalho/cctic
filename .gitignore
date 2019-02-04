@@ -160,4 +160,4 @@ $RECYCLE.BIN/
 
 src/Modules/**/launchSettings.json
 PublishProfiles/
-logs/
+logs/         
